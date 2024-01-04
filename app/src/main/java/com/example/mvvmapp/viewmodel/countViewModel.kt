@@ -1,19 +1,24 @@
 package com.example.mvvmapp.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class countViewModel : ViewModel() {
-    var mutableCountData = MutableLiveData<Int>()
+class CountViewModel : ViewModel() {
+    var mutableCountLiveData = MutableLiveData<Int>()
     init {
-        mutableCountData.value = 0
+        mutableCountLiveData.value = 0
+    }
+    fun getMutableLiveData():LiveData<Int>{
+        return mutableCountLiveData
     }
     fun increment (){
-        mutableCountData.value = mutableCountData.value!! + 1
+        mutableCountLiveData.value = mutableCountLiveData.value!! + 1
         // use dobble exclamation when you sure the data is not nullable
     }
     fun decrement (){
-        mutableCountData.value = mutableCountData.value!! - 1
+        mutableCountLiveData.value = mutableCountLiveData.value!! - 1
         // use dobble exclamation when you sure the data is not nullable
     }
+
 }
