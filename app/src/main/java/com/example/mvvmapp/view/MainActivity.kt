@@ -1,6 +1,7 @@
-package com.example.mvvmapp
+package com.example.mvvmapp.view
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -9,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.example.mvvmapp.R
 import com.example.mvvmapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,22 +18,33 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    // copying my parent class
+//    adding more features on child
     override fun onCreate(savedInstanceState: Bundle?) {
+        print("onCreated started")
+        Log.i("appoftheday" , "onCreate")
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // in the entire app -> make content as the above the xml
 
+
+        // action bar -> top bar
         setSupportActionBar(binding.toolbar)
 
+
+        // nav controller -> login for multiple pages
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
+        var count = 0
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            count = count + 1
+            Snackbar.make(view, "Count" + count, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
